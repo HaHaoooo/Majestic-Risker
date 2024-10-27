@@ -9,8 +9,8 @@
     "y": 109
   }],
   "player": {
-    "x": 71,
-    "y": 99,
-    "direction": "RIGHT"
+    "x": 36,
+    "y": 56,
+    "direction": "LEFT"
   }
 }
