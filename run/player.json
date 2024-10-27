@@ -1,0 +1,12 @@
+{
+  "init": true,
+  "player": {
+    "mana": 50,
+    "maxMana": 50,
+    "stamina": 50,
+    "health": 20,
+    "maxHealth": 20,
+    "maxStamina": 50,
+    "speed": 1
+  }
+}

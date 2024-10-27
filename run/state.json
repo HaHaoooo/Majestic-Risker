@@ -1,0 +1,16 @@
+{
+  "camera": {
+    "x": -300,
+    "y": -200
+  },
+  "items": [{
+    "filename": "iron_sword.png",
+    "x": 99,
+    "y": 109
+  }],
+  "player": {
+    "x": 71,
+    "y": 99,
+    "direction": "RIGHT"
+  }
+}

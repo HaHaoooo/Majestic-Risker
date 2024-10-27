@@ -1,0 +1,9 @@
+{
+  "name": "Iron Sword",
+  "rank": "Basic",
+  "description": "a basic sword that lead a future legacy to his destination",
+  "damage": 8,
+  "durability": 50,
+  "mana": 5,
+  "stamina": 10
+}
