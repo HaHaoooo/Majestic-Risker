@@ -1,31 +1,19 @@
 package com.haha.rpg.events;
 
 import com.haha.rpg.gui.Slot;
-import com.haha.rpg.main.Basics;
+import com.haha.rpg.main.basics.Basics;
 import com.haha.rpg.main.Events;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @Events
-public class HoverOnSlot extends MouseAdapter implements Basics {
+public class EventHoverOnSlot extends MouseAdapter implements Basics {
     @Override
     public void mouseMoved(MouseEvent e) {
         int mouseX = e.getX();
         int mouseY = e.getY();
-
-        Slot mainSlot = gui.playerInventoryGui.getMainSlot();
-        updateHoverState(mainSlot, mouseX, mouseY);
-
-        for (Slot slot : gui.playerInventoryGui.getEquipmentSlots()) {
-            updateHoverState(slot, mouseX, mouseY);
-        }
-
-        for (Slot slot : gui.playerInventoryGui.getItemSlots()) {
-            updateHoverState(slot, mouseX, mouseY);
-        }
-
-        for (Slot slot : gui.playerInventoryGui.getDecorationSlots()) {
+        for (Slot slot : gui.playerInventoryGui.getAllSlots()) {
             updateHoverState(slot, mouseX, mouseY);
         }
     }

@@ -1,7 +1,8 @@
-package com.haha.rpg.main;
+package com.haha.rpg.main.basics;
 
 import com.haha.rpg.gui.Gui;
 import com.haha.rpg.items.Item;
+import com.haha.rpg.main.GamePanel;
 import com.haha.rpg.world.World;
 
 import java.util.ArrayList;

@@ -2,7 +2,6 @@ package com.haha.rpg.gui.renderer;
 
 import com.haha.rpg.gui.RenderScreen;
 import com.haha.rpg.player.Player;
-import com.haha.rpg.util.ResourceLocation;
 import com.haha.rpg.world.World;
 
 import java.awt.*;

@@ -1,5 +1,6 @@
 package com.haha.rpg.items;
 
+import com.haha.rpg.data.PlayerData;
 import com.haha.rpg.gui.Camera;
 import com.haha.rpg.util.JsonHelper;
 import com.haha.rpg.util.ResourceLocation;
@@ -11,21 +12,24 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static com.haha.rpg.main.basics.Basics.items;
+
 public class Item {
     private BufferedImage image;
-    private String fileLocation;
+    private String filepath;
     private int x, y;
     private final String name;
     private final String description;
+    private final String rank;
     private final JSONObject jsonObject;
     private boolean pickedUp = false;
 
-    public Item(String fileLocation, int x, int y) {
+    public final int damage, durability, mana, stamina;
+
+    public Item(String filepath) {
         try {
-            this.image = ImageIO.read(new File(fileLocation));
-            this.fileLocation = fileLocation;
-            this.x = x;
-            this.y = y;
+            this.image = ImageIO.read(new File(filepath));
+            this.filepath = filepath;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,6 +37,11 @@ public class Item {
         assert jsonObject != null;
         this.name = jsonObject.getString("name");
         this.description = jsonObject.getString("description");
+        this.rank = jsonObject.getString("rank");
+        this.damage = getJsonObject().getInt("damage");
+        this.durability = getJsonObject().getInt("durability");
+        this.mana = getJsonObject().getInt("mana");
+        this.stamina = getJsonObject().getInt("stamina");
     }
 
     public void render(Graphics g, Camera camera) {
@@ -56,10 +65,22 @@ public class Item {
 
     public void pickup() {
         pickedUp = true;
+        PlayerData data = new PlayerData();
+        data.addItem(this);
+        data.saveData();
+        items.remove(this);
     }
 
     public int getX() {
         return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getY() {
@@ -67,7 +88,7 @@ public class Item {
     }
 
     public String getFilename() {
-        return fileLocation.split("/")[fileLocation.split("/").length - 1];
+        return filepath.split("/")[filepath.split("/").length - 1];
     }
 
     public String getName() {
@@ -84,6 +105,10 @@ public class Item {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getRank() {
+        return rank;
     }
 
     public JSONObject getJsonObject() {

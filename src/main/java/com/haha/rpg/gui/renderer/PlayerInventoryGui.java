@@ -1,46 +1,52 @@
 package com.haha.rpg.gui.renderer;
 
-import com.haha.rpg.Main;
 import com.haha.rpg.gui.RenderScreen;
 import com.haha.rpg.gui.Slot;
 import com.haha.rpg.items.Item;
 import com.haha.rpg.util.manager.DragManager;
 import com.haha.rpg.world.World;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class PlayerInventoryGui {
     public RenderScreen screen;
     private final World world;
-    private boolean visible = false;
-    private final Slot[] itemSlots = new Slot[16];
-    private final Slot[] equipmentSlots = new Slot[4];
-    private final Slot[] decorationSlots = new Slot[4];
-    private final Slot mainSlot;
     private final DragManager dragManager = new DragManager();
+    private boolean visible = false;
+
+    public final Slot[] itemSlots = new Slot[16];
+    public final Slot[] equipmentSlots = new Slot[4];
+    public final Slot[] decorationSlots = new Slot[4];
+    public Slot mainSlot;
 
     public PlayerInventoryGui(World world) {
         this.world = world;
         int image = 83 * 3;
-        int x = (Main.WIDTH - image) / 2;
-        int y = (Main.HEIGHT - image) / 2;
+        SwingUtilities.invokeLater(() -> {
+            int x = (world.getPanel().getWidth() - image) / 2;
+            int y = (world.getPanel().getHeight() - image) / 2 + 14;
 
-        // initialize mainSlot
-        this.mainSlot = new Slot(x + 12, y + image - Slot.side - 26, null);
-        // initialize equipmentSlots
-        for (int i = 0; i < equipmentSlots.length; i++) equipmentSlots[i] = new Slot(x + 12, y + i * (Slot.side + 2) - 5, null);
-        // initialize decorationSlots
-        for (int i = 0; i < decorationSlots.length; i++) decorationSlots[i] = new Slot(x + (i % 4) * (Slot.side + 2) + 78, y + image - Slot.side - 26, null);
-        // initialize itemSlots
-        int gridSize = 4;
-        int slotSpacing = Slot.side + 2;
-        for (int i = 0; i < itemSlots.length; i++) {
-            int row = i / gridSize;
-            int col = i % gridSize;
-            itemSlots[i] = new Slot(x + col * slotSpacing + 78, y + row * slotSpacing - 5, null);
-        }
+            // initialize mainSlot
+            this.mainSlot = new Slot(x + 12, y + image - Slot.side - 26, null);
+            // initialize equipmentSlots
+            for (int i = 0; i < equipmentSlots.length; i++)
+                equipmentSlots[i] = new Slot(x + 12, y + i * (Slot.side + 2) - 5, null);
+            // initialize decorationSlots
+            for (int i = 0; i < decorationSlots.length; i++)
+                decorationSlots[i] = new Slot(x + (i % 4) * (Slot.side + 2) + 78, y + image - Slot.side - 26, null);
+            // initialize itemSlots
+            int gridSize = 4;
+            int slotSpacing = Slot.side + 2;
+            for (int i = 0; i < itemSlots.length; i++) {
+                int row = i / gridSize;
+                int col = i % gridSize;
+                itemSlots[i] = new Slot(x + col * slotSpacing + 78, y + row * slotSpacing - 5, null);
+            }
+        });
     }
 
     public void render(Graphics g) {
@@ -77,28 +83,16 @@ public class PlayerInventoryGui {
         return dragManager;
     }
 
+    public boolean isVisible() {
+        return visible;
+    }
+
     public void openGui() {
         visible = true;
     }
 
     public void closeGui() {
         visible = false;
-    }
-
-    public Slot getMainSlot() {
-        return mainSlot;
-    }
-
-    public Slot[] getEquipmentSlots() {
-        return equipmentSlots;
-    }
-
-    public Slot[] getItemSlots() {
-        return itemSlots;
-    }
-
-    public Slot[] getDecorationSlots() {
-        return decorationSlots;
     }
 
     public List<Slot> getAllSlots() {

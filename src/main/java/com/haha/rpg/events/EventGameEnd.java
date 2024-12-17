@@ -1,7 +1,7 @@
 package com.haha.rpg.events;
 
 import com.haha.rpg.items.Item;
-import com.haha.rpg.main.Basics;
+import com.haha.rpg.main.basics.Basics;
 import com.haha.rpg.main.Events;
 import com.haha.rpg.util.JsonHelper;
 import org.json.JSONArray;
@@ -11,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 @Events
-public class GameEnd extends WindowAdapter implements Basics {
+public class EventGameEnd extends WindowAdapter implements Basics {
     @Override
     public void windowClosing(WindowEvent e) {
         saveGameState();

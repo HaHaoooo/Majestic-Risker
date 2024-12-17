@@ -1,10 +1,12 @@
 package com.haha.rpg.events;
 
-import com.haha.rpg.Direction;
+import com.haha.rpg.data.PlayerData;
 import com.haha.rpg.gui.Camera;
-import com.haha.rpg.items.ItemSword;
-import com.haha.rpg.main.Basics;
+import com.haha.rpg.gui.Slot;
+import com.haha.rpg.items.Item;
 import com.haha.rpg.main.Events;
+import com.haha.rpg.main.basics.Basics;
+import com.haha.rpg.main.basics.Direction;
 import com.haha.rpg.player.Player;
 import com.haha.rpg.util.JsonHelper;
 import com.haha.rpg.util.ResourceLocation;
@@ -15,10 +17,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 @Events
-public class GameStart extends WindowAdapter implements Basics {
+public class EventGameStart extends WindowAdapter implements Basics {
     @Override
     public void windowOpened(WindowEvent e) {
         loadGameState();
+        loadPlayerInventory();
         super.windowOpened(e);
     }
 
@@ -41,10 +44,19 @@ public class GameStart extends WindowAdapter implements Basics {
 
         for (int i = 0; i < itemsState.length(); i++) {
             JSONObject data = itemsState.getJSONObject(i);
-            int x = data.getInt("x");
-            int y = data.getInt("y");
             String filename = data.getString("filename");
-            items.add(new ItemSword(ResourceLocation.getLocation(filename), x, y));
+            Item sword = new Item(ResourceLocation.getLocation(filename));
+            sword.setX(data.getInt("x"));
+            sword.setY(data.getInt("y"));
+            items.add(sword);
+        }
+    }
+
+    private void loadPlayerInventory() {
+        PlayerData data = new PlayerData();
+        for (int i = 0; i < data.getInventory().length; i++) {
+            Slot slot = gui.playerInventoryGui.itemSlots[i];
+            slot.setContent(data.getInventory()[i]);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.haha.rpg.main;
 
 import com.haha.rpg.items.Item;
+import com.haha.rpg.main.basics.Basics;
 
 import javax.swing.*;
 import java.awt.*;

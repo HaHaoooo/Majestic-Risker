@@ -1,6 +1,5 @@
 package com.haha.rpg.util.manager;
 
-
 import com.haha.rpg.gui.Slot;
 import com.haha.rpg.items.Item;
 
@@ -16,8 +15,7 @@ public class DragManager {
         draggedItem = slot.getContent();
         fromSlot = slot;
         slot.setContent(null);
-        dragX = mouseX;
-        dragY = mouseY;
+        updateDragPosition(mouseX, mouseY);
     }
 
     public void updateDragPosition(int mouseX, int mouseY) {
@@ -28,15 +26,17 @@ public class DragManager {
     }
 
     public void endDrag(Slot targetSlot) {
-        if (targetSlot != null && targetSlot != fromSlot) {
-            targetSlot.setContent(draggedItem);
-        } else if (fromSlot != null) {
-            fromSlot.setContent(draggedItem);
+        if (dragging) {
+            if (targetSlot != null && targetSlot != fromSlot) {
+                targetSlot.setContent(draggedItem);
+            } else if (fromSlot != null) {
+                fromSlot.setContent(draggedItem);
+            }
+            reset();
         }
-        reset();
     }
 
-    public void reset() {
+    private void reset() {
         draggedItem = null;
         fromSlot = null;
         dragging = false;

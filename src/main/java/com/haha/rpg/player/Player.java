@@ -1,6 +1,6 @@
 package com.haha.rpg.player;
 
-import com.haha.rpg.Direction;
+import com.haha.rpg.main.basics.Direction;
 import com.haha.rpg.gui.Camera;
 import com.haha.rpg.util.JsonHelper;
 import com.haha.rpg.util.ResourceLocation;
@@ -140,7 +140,7 @@ public class Player {
     public void render(Graphics g, int cameraX, int cameraY) {
         JSONObject jsonObject = JsonHelper.read("run/player.json");
         assert jsonObject != null;
-        JSONObject playerInfo = jsonObject.getJSONObject("player");
+        JSONObject playerInfo = jsonObject.getJSONObject("stat");
         this.speed = playerInfo.getInt("speed");
         this.health = playerInfo.getDouble("health");
         this.maxHealth = playerInfo.getDouble("maxHealth");

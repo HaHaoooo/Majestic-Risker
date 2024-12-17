@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class RenderScreen {
 
@@ -52,6 +53,14 @@ public class RenderScreen {
         g.setColor(color);
         g.setFont(font);
         g.drawString(text, x, y);
+    }
+
+    public void drawTextLine(List<String> texts, int x, int y, Font font, Color color) {
+        g.setColor(color);
+        g.setFont(font);
+        for (int i = 0; i < texts.size(); i++) {
+            g.drawString(texts.get(i), x, y + i * font.getSize() + 3);
+        }
     }
 
     public void drawRect(int x, int y, int width, int height, Color color) {

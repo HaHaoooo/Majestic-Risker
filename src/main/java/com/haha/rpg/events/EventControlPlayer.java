@@ -1,13 +1,13 @@
 package com.haha.rpg.events;
 
-import com.haha.rpg.main.Basics;
+import com.haha.rpg.main.basics.Basics;
 import com.haha.rpg.main.Events;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 @Events
-public class PlayerKeyHandler extends KeyAdapter implements Basics {
+public class EventControlPlayer extends KeyAdapter implements Basics {
     @Override
     public void keyPressed(KeyEvent e) {
         world.getPlayer().handleKeyPressed(e);

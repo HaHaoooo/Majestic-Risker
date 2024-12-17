@@ -1,7 +1,7 @@
 package com.haha.rpg.util;
 
 import com.haha.rpg.Main;
-import com.haha.rpg.main.Basics;
+import com.haha.rpg.main.basics.Basics;
 import com.haha.rpg.main.Events;
 import org.reflections.Reflections;
 

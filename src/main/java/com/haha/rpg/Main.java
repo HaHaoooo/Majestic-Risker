@@ -1,6 +1,7 @@
 package com.haha.rpg;
 
-import com.haha.rpg.main.Basics;
+import com.haha.rpg.main.basics.Basics;
+import com.haha.rpg.main.basics.Direction;
 import com.haha.rpg.util.EventHelper;
 import com.haha.rpg.util.JsonHelper;
 import org.json.JSONArray;
@@ -12,8 +13,8 @@ import java.util.Random;
 
 public class Main extends JFrame implements Basics {
 
-    public static int WIDTH = 800;
-    public static int HEIGHT = 600;
+    public static int WIDTH = 1000;
+    public static int HEIGHT = 800;
 
     public void run(){
         File runFile = new File("run/player.json");
@@ -39,7 +40,7 @@ public class Main extends JFrame implements Basics {
         playerInfo.put("maxStamina", 50);
         playerInfo.put("stamina", 50);
         content.put("init", true);
-        content.put("player", playerInfo);
+        content.put("stat", playerInfo);
         JsonHelper.write(content, "run/player.json");
 
         JSONObject gameState = new JSONObject();
