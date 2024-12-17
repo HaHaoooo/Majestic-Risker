@@ -1,4 +1,4 @@
-package com.haha.rpg.events;
+package com.haha.rpg.events.player;
 
 import com.haha.rpg.main.basics.Basics;
 import com.haha.rpg.main.Events;

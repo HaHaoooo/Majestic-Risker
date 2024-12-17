@@ -1,4 +1,4 @@
-package com.haha.rpg.events;
+package com.haha.rpg.events.gui;
 
 import com.haha.rpg.gui.Slot;
 import com.haha.rpg.main.Events;

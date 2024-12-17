@@ -15,6 +15,12 @@ public class Main extends JFrame implements Basics {
 
     public static int WIDTH = 1000;
     public static int HEIGHT = 800;
+    private static final Main instance = new Main();
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(instance::run);
+        EventHelper.registerAllEvents();
+    }
 
     public void run(){
         File runFile = new File("run/player.json");
@@ -27,6 +33,10 @@ public class Main extends JFrame implements Basics {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+    }
+
+    public static Main getInstance() {
+        return instance;
     }
 
     private void initGameState() {
@@ -65,16 +75,5 @@ public class Main extends JFrame implements Basics {
         gameState.put("camera", camera);
         gameState.put("items", items);
         JsonHelper.write(gameState, "run/state.json");
-    }
-
-    private static final Main instance = new Main();
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(instance::run);
-        EventHelper.registerAllEvents();
-    }
-
-    public static Main getInstance() {
-        return instance;
     }
 }

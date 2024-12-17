@@ -1,4 +1,4 @@
-package com.haha.rpg.events;
+package com.haha.rpg.events.data;
 
 import com.haha.rpg.data.PlayerData;
 import com.haha.rpg.gui.Camera;
